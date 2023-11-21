@@ -1,8 +1,11 @@
 class Attractor {
-    constructor() {
-        this.position = createVector(width / 2, height / 2);
-        this.mass = 20;
-        this.G = 1;
+    constructor(x, y) {
+        this.position = createVector(x, y);
+        this.velocity = createVector(0, 0);
+        this.acceleration = createVector(0, 0);
+        this.mass = 2;
+        this.G = 10;
+        this.angle = 0; // Add an angle property
     }
 
     attract(m) {
@@ -15,10 +18,22 @@ class Attractor {
         return force;
     }
 
+    update() {
+        this.position.x = width / 2 + cos(this.angle) * 200;
+        this.position.y = height / 2 + sin(this.angle) * 300;
+        this.angle += 0.01; 
+    }
+
+    applyForce(force) {
+        let f = p5.Vector.div(force, this.mass);
+        this.acceleration.add(f);
+    }
+
     display() {
         ellipseMode(CENTER);
         strokeWeight(4);
         stroke(255);
-        ellipse(this.position.x, this.position.y, this.mass * 2, this.mass * 2);
+        fill(255);
+        ellipse(this.position.x, this.position.y, this.mass * 20, this.mass * 20);
     }
 }

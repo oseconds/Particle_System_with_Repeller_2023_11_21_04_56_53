@@ -33,7 +33,7 @@ class Particle {
 
   // Method to display
   show() {
-    //stroke(280, this.lifespan);
+    stroke(0, this.lifespan);
     strokeWeight(1);
     fill(255,180,50, this.lifespan*2);
     //circle(this.position.x, this.position.y, 8);

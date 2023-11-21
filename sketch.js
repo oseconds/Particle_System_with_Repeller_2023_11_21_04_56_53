@@ -12,7 +12,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   emitter = new Emitter(width / 2, height / 2);
   repeller = new Repeller(width / 2, 500, strength);
-  att = new Attractor(20, height / 2);
+  att = new Attractor(width/2, height / 2);
 }
 
 function draw() {
@@ -22,10 +22,14 @@ function draw() {
   let gravity = createVector(0, 0.1);
   emitter.applyForce(gravity);
   //{!1} Applying the repeller
+  emitter.applyAttractor(att);
   emitter.applyRepeller(repeller);
   repeller.position = createVector(mouseX, mouseY);
   
+  att.update();
+
   repeller.show();
+  att.display();
   emitter.run();
 
   if (keyIsDown(UP_ARROW)) {
