@@ -9,7 +9,7 @@ let strength = 5;
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(innerWidth, innerHeight);
   emitter = new Emitter(width / 2, height / 2);
   repeller = new Repeller(width / 2, 500, strength);
   att = new Attractor(width/2, height / 2);
