@@ -18,7 +18,7 @@ class Repeller {
     //{!6 .code-wide} This is the same repel algorithm we used in Chapter 2: forces based on gravitational attraction.
     let force = p5.Vector.sub(this.position, particle.position);
     let distance = force.mag();
-    distance = constrain(distance, 5, 50);
+    distance = constrain(distance, 5, 80);
     let strength = (-1 * this.power * (0.1*this.strength)) / (distance * distance);
     force.setMag(strength);
     return force;
