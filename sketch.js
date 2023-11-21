@@ -3,13 +3,16 @@ let emitter;
 
 //{!1} One repeller
 let repeller;
+let att;
 
 let strength = 5;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   emitter = new Emitter(width / 2, height / 2);
   repeller = new Repeller(width / 2, 500, strength);
+  att = new Attractor(20, height / 2);
 }
 
 function draw() {
