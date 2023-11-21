@@ -4,17 +4,17 @@ class Attractor {
         this.velocity = createVector(0, 0);
         this.acceleration = createVector(0, 0);
         this.mass = 2;
-        this.G = 10;
+        this.G = 1;
         this.angle = 0; // Add an angle property
     }
 
-    attract(m) {
-        let force = p5.Vector.sub(this.position, m.position);
+    attract(particle) {
+        let force = p5.Vector.sub(this.position, particle.position);
         let distance = force.mag();
         distance = constrain(distance, 5, 25);
         force.normalize();
-        let strength = (this.G * this.mass * m.mass) / (distance * distance);
-        force.mult(strength);
+        let strength = (this.G * this.mass * particle.mass) / (distance * distance);
+        force.add(strength/10);
         return force;
     }
 
