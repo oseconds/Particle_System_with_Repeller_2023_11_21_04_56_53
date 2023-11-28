@@ -36,10 +36,12 @@ function setup() {
   gui = QuickSettings.create(10, 10, 'My GUI');
   gui.addRange('strength', strengthMin, strengthMax, initialStrength, 1);
 
-  var resetButton = createButton('Reset');
-  resetButton.position(20, 120);
-  resetButton.mouseClicked(resetValues);
-  resetButton.style('z-index', '1');
+  gui.addButton('Reset', resetValues);
+
+  // var resetButton = createButton('Reset');
+  // resetButton.position(20, 120);
+  // resetButton.mouseClicked(resetValues);
+  // resetButton.style('z-index', '1');
 
 
   // noLoop();
@@ -93,8 +95,6 @@ function resetValues() {
     y: parseInt(gui._panel.style.top)
   };
 
-
-
   if (gui && typeof gui.destroy === 'function') {
     gui.destroy();
   }
@@ -102,4 +102,8 @@ function resetValues() {
 
   gui = QuickSettings.create(position.x, position.y, 'My GUI');
   gui.addRange('strength', strengthMin, strengthMax, initialStrength, 1);
+  gui.addButton('Reset', resetValues);
+  
 }
+
+// gui.addButton('Reset', resetValues);
