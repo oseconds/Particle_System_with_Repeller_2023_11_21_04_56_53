@@ -5,15 +5,17 @@ let emitter;
 let repeller;
 let att;
 
-let strength = 5;
+//let strength = 5;
 
 let pSlider;
-let gui;
 
-let params = {
-  strength: 5,
-  pSlider: 10
-};
+// New variables for GUI
+var strength = 10;
+var strengthMin = -100;
+var strengthMax = 100;
+
+// GUI object
+var gui;
 
 
 
@@ -29,11 +31,10 @@ function setup() {
   // pSlider.style('width', width/2 + 'px');
   pSlider.position(width/2 - pSlider.width/2, height - 130);
   
-  // gui = createGui('My GUI');
-  // // gui.addObject(params);
-  // gui.addGlobals('strength', 'pSlider');
+  gui = createGui('My GUI');
+  gui.addGlobals('strength');
 
-  // gui.addObject(params);
+  // noLoop();
   
 }
 
