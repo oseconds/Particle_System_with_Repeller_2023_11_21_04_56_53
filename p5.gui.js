@@ -45,19 +45,18 @@
 
     };
 
-
-    p5.prototype.removeGui = function (gui) {
+    p5.prototype.destroyGui = function (gui) {
         // Find the index of the GUI in the guis array
         var index = guis.indexOf(gui);
-
+    
         // If the GUI was found, remove it from the array
         if (index !== -1) {
             guis.splice(index, 1);
         }
-
-        // Remove the HTML element associated with the GUI
-        if (gui.prototype && gui.prototype.container) {
-            gui.prototype.container.remove();
+    
+        // Call the destroy method of the gui object
+        if (gui && typeof gui.destroy === 'function') {
+            gui.destroy();
         }
     };
 

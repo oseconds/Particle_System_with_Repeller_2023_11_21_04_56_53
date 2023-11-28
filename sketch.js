@@ -11,6 +11,8 @@ let pSlider;
 
 var gui;
 
+var guis = []; 
+
 // New variables for GUI
 var strength = 10;
 var strengthMin = -100;
@@ -83,12 +85,28 @@ function draw() {
 
 }
 
+function destroyGui(gui) {
+  // Find the index of the GUI in the guis array
+  var index = guis.indexOf(gui);
+
+  // If the GUI was found, remove it from the array
+  if (index !== -1) {
+      guis.splice(index, 1);
+  }
+
+  // Call the destroy method of the gui object
+  if (gui && typeof gui.destroy === 'function') {
+      gui.destroy();
+  }
+}
+
+
 function resetValues() {
   strength = initialStrength;
 
-  removeGui(gui);
+  destroyGui(gui); // Call the destroyGui function
 
-  gui = createGui('My GUI');
+  gui = createGui('My GUI'); // Assign a new GUI to the gui variable
   gui.addGlobals('strength');
-
+  guis.push(gui); // Add the new GUI to the guis array
 }
