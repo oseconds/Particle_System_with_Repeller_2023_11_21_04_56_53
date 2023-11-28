@@ -27,7 +27,7 @@ function setup() {
   repeller = new Repeller(width / 2, 500, strength);
   att = new Attractor(width / 2, height / 2);
 
-  // pSlider = createSlider(-100, 100, 10);
+  pSlider = createSlider(-100, 100, 10);
   // let sliderWidth = Math.min(width/2, 300);
   // pSlider.style('width', sliderWidth + 'px');
   // // pSlider.style('width', width/2 + 'px');
@@ -37,6 +37,8 @@ function setup() {
   gui.addRange('strength', strengthMin, strengthMax, initialStrength, 1);
 
   gui.addButton('Reset', resetValues);
+
+  
 
   // var resetButton = createButton('Reset');
   // resetButton.position(20, 120);
@@ -52,8 +54,9 @@ function draw() {
   background(0);
   emitter.addParticle();
 
-  //let strength = pSlider.value();
-  repeller.setStrength(strength);
+  // let strength = pSlider.value();
+  repeller.setStrength(gui.getRangeValue('strength'));
+  // print(gui.getRangeValue('strength'));
 
 
   let gravity = createVector(0, 0.1);
