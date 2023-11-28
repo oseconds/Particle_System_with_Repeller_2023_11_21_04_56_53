@@ -16,8 +16,9 @@ function setup() {
   att = new Attractor(width/2, height / 2);
 
   pSlider = createSlider(-100, 100, 10);
+  pSlider.style('width', '1000px');
   pSlider.position(width/2 - pSlider.width/2, height - 130);
-
+  
 }
 
 function draw() {
@@ -42,15 +43,17 @@ function draw() {
   emitter.run();
 
   if (keyIsDown(UP_ARROW)) {
-    repeller.setStrength(repeller.strength + 1);
+    let currentValue = pSlider.value();
+    pSlider.value(currentValue + 5);
   }
 
   if (keyIsDown(DOWN_ARROW)) {
-    repeller.setStrength(repeller.strength - 1);
+    let currentValue = pSlider.value();
+    pSlider.value(currentValue - 5);
   }
 
   if (keyIsDown(32)) { // 'SPACE' key
-    repeller.setStrength(strength); 
+    pSlider.value(10);
   }
 
   textSize(16);
