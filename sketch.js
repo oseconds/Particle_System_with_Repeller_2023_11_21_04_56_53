@@ -8,20 +8,29 @@ let att;
 let strength = 5;
 
 
+
 function setup() {
   createCanvas(innerWidth, innerHeight);
   emitter = new Emitter(width / 2, height / 2);
   repeller = new Repeller(width / 2, 500, strength);
   att = new Attractor(width/2, height / 2);
+
+  pSlider = createSlider(-100, 100, 10);
+  pSlider.position(width/2 - pSlider.width/2, height - 130);
+
 }
 
 function draw() {
   background(0);
   emitter.addParticle();
-  // We’re applying a universal gravity.
+
+  let strength = pSlider.value();
+  repeller.setStrength(strength);
+
+  
   let gravity = createVector(0, 0.1);
   emitter.applyForce(gravity);
-  //{!1} Applying the repeller
+  
   emitter.applyAttractor(att);
   emitter.applyRepeller(repeller);
   repeller.position = createVector(mouseX, mouseY);
@@ -40,8 +49,8 @@ function draw() {
     repeller.setStrength(repeller.strength - 1);
   }
 
-  if (keyIsDown(32)) { // 32 is the key code for the 'SPACE' key
-    repeller.setStrength(strength); // Assuming 100 is the initial strength
+  if (keyIsDown(32)) { // 'SPACE' key
+    repeller.setStrength(strength); 
   }
 
   textSize(16);
