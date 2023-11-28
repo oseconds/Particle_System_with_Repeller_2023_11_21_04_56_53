@@ -7,6 +7,8 @@ let att;
 
 let strength = 5;
 
+let gui;
+
 
 
 function setup() {
@@ -18,6 +20,9 @@ function setup() {
   pSlider = createSlider(-100, 100, 10);
   pSlider.style('width', '1000px');
   pSlider.position(width/2 - pSlider.width/2, height - 130);
+
+  gui = createGui('My GUI');
+  gui.addGlobals('strength');
   
 }
 
@@ -59,5 +64,6 @@ function draw() {
   textSize(16);
   fill(255);
   text("Repeller Strength: " + repeller.strength + " (keyboard up/down/space to reset)", 10, height - 10);
+
 
 }
