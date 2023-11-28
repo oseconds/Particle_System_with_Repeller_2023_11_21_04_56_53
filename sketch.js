@@ -27,7 +27,7 @@ function setup() {
   repeller = new Repeller(width / 2, 500, strength);
   att = new Attractor(width / 2, height / 2);
 
-  pSlider = createSlider(-100, 100, 10);
+  //pSlider = createSlider(-100, 100, 10);
   // let sliderWidth = Math.min(width/2, 300);
   // pSlider.style('width', sliderWidth + 'px');
   // // pSlider.style('width', width/2 + 'px');
@@ -92,20 +92,21 @@ function draw() {
 
 
 function resetValues() {
-  strength = initialStrength;
-  var position = {
-    x: parseInt(gui._panel.style.left),
-    y: parseInt(gui._panel.style.top)
-  };
+  //strength = initialStrength;
+  // var position = {
+  //   x: parseInt(gui._panel.style.left),
+  //   y: parseInt(gui._panel.style.top)
+  // };
 
-  if (gui && typeof gui.destroy === 'function') {
-    gui.destroy();
-  }
+  // if (gui && typeof gui.destroy === 'function') {
+  //   gui.destroy();
+  // }
 
 
-  gui = QuickSettings.create(position.x, position.y, 'My GUI');
-  gui.addRange('strength', strengthMin, strengthMax, initialStrength, 1);
-  gui.addButton('Reset', resetValues);
+  // gui = QuickSettings.create(position.x, position.y, 'My GUI');
+  // gui.addRange('strength', strengthMin, strengthMax, initialStrength, 1);
+  // gui.addButton('Reset', resetValues);
+  gui.setRangeValue('strength', initialStrength);
   
 }
 
