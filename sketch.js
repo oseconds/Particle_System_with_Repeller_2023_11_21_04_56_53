@@ -88,11 +88,18 @@ function draw() {
 
 function resetValues() {
   strength = initialStrength;
-  x = gui.x;
-  y = gui.y;
+  var position = {
+    x: parseInt(gui._panel.style.left),
+    y: parseInt(gui._panel.style.top)
+  };
 
-  destroyGui(gui);
 
-  gui = QuickSettings.create(x, y, 'My GUI');
+
+  if (gui && typeof gui.destroy === 'function') {
+    gui.destroy();
+  }
+
+
+  gui = QuickSettings.create(position.x, position.y, 'My GUI');
   gui.addRange('strength', strengthMin, strengthMax, initialStrength, 1);
 }
