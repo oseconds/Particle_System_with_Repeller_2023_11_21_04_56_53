@@ -7,7 +7,13 @@ let att;
 
 let strength = 5;
 
+let pSlider;
 let gui;
+
+let params = {
+  strength: 5,
+  pSlider: 10
+};
 
 
 
@@ -18,11 +24,16 @@ function setup() {
   att = new Attractor(width/2, height / 2);
 
   pSlider = createSlider(-100, 100, 10);
-  pSlider.style('width', '1000px');
+  let sliderWidth = Math.min(width/2, 300);
+  pSlider.style('width', sliderWidth + 'px');
+  // pSlider.style('width', width/2 + 'px');
   pSlider.position(width/2 - pSlider.width/2, height - 130);
+  
+  // gui = createGui('My GUI');
+  // // gui.addObject(params);
+  // gui.addGlobals('strength', 'pSlider');
 
-  gui = createGui('My GUI');
-  gui.addGlobals('strength');
+  // gui.addObject(params);
   
 }
 
@@ -30,7 +41,7 @@ function draw() {
   background(0);
   emitter.addParticle();
 
-  let strength = pSlider.value();
+  //let strength = pSlider.value();
   repeller.setStrength(strength);
 
   
