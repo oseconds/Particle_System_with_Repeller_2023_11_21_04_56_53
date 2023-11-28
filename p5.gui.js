@@ -47,7 +47,18 @@
 
 
     p5.prototype.removeGui = function (gui) {
-        // TODO: implement this
+        // Find the index of the GUI in the guis array
+        var index = guis.indexOf(gui);
+
+        // If the GUI was found, remove it from the array
+        if (index !== -1) {
+            guis.splice(index, 1);
+        }
+
+        // Remove the HTML element associated with the GUI
+        if (gui.prototype && gui.prototype.container) {
+            gui.prototype.container.remove();
+        }
     };
 
     // update defaults used for creation of sliders

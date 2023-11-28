@@ -9,14 +9,14 @@ let att;
 
 let pSlider;
 
+var gui;
+
 // New variables for GUI
 var strength = 10;
 var strengthMin = -100;
 var strengthMax = 100;
 
-// GUI object
-var gui;
-
+var initialStrength = 10;
 
 
 function setup() {
@@ -25,14 +25,20 @@ function setup() {
   repeller = new Repeller(width / 2, 500, strength);
   att = new Attractor(width/2, height / 2);
 
-  pSlider = createSlider(-100, 100, 10);
-  let sliderWidth = Math.min(width/2, 300);
-  pSlider.style('width', sliderWidth + 'px');
-  // pSlider.style('width', width/2 + 'px');
-  pSlider.position(width/2 - pSlider.width/2, height - 130);
+  // pSlider = createSlider(-100, 100, 10);
+  // let sliderWidth = Math.min(width/2, 300);
+  // pSlider.style('width', sliderWidth + 'px');
+  // // pSlider.style('width', width/2 + 'px');
+  // pSlider.position(width/2 - pSlider.width/2, height - 130);
   
   gui = createGui('My GUI');
   gui.addGlobals('strength');
+
+  var resetButton = createButton('Reset');
+  resetButton.position(20, 120);
+  resetButton.mouseClicked(resetValues);
+  resetButton.style('z-index', '1');
+  
 
   // noLoop();
   
@@ -60,22 +66,29 @@ function draw() {
   emitter.run();
 
   if (keyIsDown(UP_ARROW)) {
-    let currentValue = pSlider.value();
-    pSlider.value(currentValue + 5);
+    strength += 5;
   }
-
+  
   if (keyIsDown(DOWN_ARROW)) {
-    let currentValue = pSlider.value();
-    pSlider.value(currentValue - 5);
+    strength -= 5;
   }
-
+  
   if (keyIsDown(32)) { // 'SPACE' key
-    pSlider.value(10);
+    strength = 10;
   }
 
   textSize(16);
   fill(255);
   text("Repeller Strength: " + repeller.strength + " (keyboard up/down/space to reset)", 10, height - 10);
 
+}
+
+function resetValues() {
+  strength = initialStrength;
+
+  removeGui(gui);
+
+  gui = createGui('My GUI');
+  gui.addGlobals('strength');
 
 }
