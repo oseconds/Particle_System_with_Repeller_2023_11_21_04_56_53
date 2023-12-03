@@ -10,16 +10,25 @@ var strengthMin = -100;
 var strengthMax = 100;
 var initialStrength = 10;
 
+//어트랙터 변수
+var  mass = 2;
+var  G = 1;
+var  angle = 0;
+
 function setup() {
   createCanvas(innerWidth, innerHeight);
   emitter = new Emitter(width / 2, height / 2);
   repeller = new Repeller(width / 2, 500, strength);
-  att = new Attractor(width / 2, height / 2);
+  att = new Attractor(width / 2, height / 2, mass, G, angle);
 
   gui = QuickSettings.create(10, 10, 'My GUI');
   gui.addRange('strength', strengthMin, strengthMax, initialStrength, 1);
 
   gui.addButton('Reset', resetValues);
+
+  gui.addRange('mass', 1, 100, 2, 1);
+  //gui.addRange('G', -1000, 1000, 1, 1);
+  gui.addRange('angle', 0, 10, 0, 1);
 
 }
 
@@ -28,7 +37,11 @@ function draw() {
   emitter.addParticle();
 
   repeller.setStrength(gui.getRangeValue('strength'));
+  att.mass = gui.getRangeValue('mass');
+    // att.G = gui.getRangeValue('G');
+  att.angle = gui.getRangeValue('angle');
 
+  att.update();
   let gravity = createVector(0, 0.1);
   emitter.applyForce(gravity);
 
@@ -36,7 +49,6 @@ function draw() {
   emitter.applyRepeller(repeller);
   repeller.position = createVector(mouseX, mouseY);
 
-  att.update();
 
   repeller.show();
   att.display();

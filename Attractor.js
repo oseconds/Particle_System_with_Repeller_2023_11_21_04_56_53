@@ -1,27 +1,30 @@
 class Attractor {
-    constructor(x, y) {
+    constructor(x, y, mass, G, angle) {
         this.position = createVector(x, y);
         this.velocity = createVector(0, 0);
         this.acceleration = createVector(0, 0);
-        this.mass = 2;
-        this.G = 1;
-        this.angle = 0; // Add an angle property
+        this.mass = mass;
+        this.G = G;
+        this.angle = angle; // Add an angle property
+        // this.radius = radius; // Add a radius property
+        // this.speed = speed;
     }
 
     attract(particle) {
         let force = p5.Vector.sub(this.position, particle.position);
         let distance = force.mag();
         distance = constrain(distance, 5, 25);
-        force.normalize();
+        //force.normalize();
         let strength = (this.G * this.mass * particle.mass) / (distance * distance);
-        force.add(strength/10);
+        force.mult(strength);
+        force.mult(0.001);
         return force;
     }
 
     update() {
         this.position.x = width / 2 + cos(this.angle) * 200;
         this.position.y = height / 2 + sin(this.angle) * 300;
-        this.angle += 0.01; 
+        this.angle += gui.getRangeValue('angle');
     }
 
     applyForce(force) {
