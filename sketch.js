@@ -52,6 +52,7 @@ function draw() {
 
   if (keyIsDown(32)) { // 'SPACE' key
     strength = 10;
+    resetValues();
   }
 
   textSize(16);
