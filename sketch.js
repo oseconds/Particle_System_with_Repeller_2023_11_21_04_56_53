@@ -75,5 +75,5 @@ function draw() {
 
 
 function resetValues() {
-  gui.setRangeValue('strength', initialStrength);
+  gui.setRangeValue('strength', initialStrength); 
 }
